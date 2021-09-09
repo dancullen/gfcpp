@@ -14,6 +14,7 @@ namespace gfc {
  * error allows errors to be handled in C++ with Golang-like syntax and idioms. In other words,
  * this class encapsulates a boolean success/failure result (i.e., error != nil) along with
  * a string containing the error message.
+ * Inspired by https://pkg.go.dev/builtin#error
  */
 class error
 {
