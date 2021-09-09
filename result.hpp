@@ -2,8 +2,6 @@
  * result.hpp contains code for returning results from a function. C++ does not support
  * multiple return values, unlike Golang, nor does it have syntactic sugar for returning
  * tuples as in Python.
- *
- * TODO Put everything into a namespace 'gfc'.
  */
 
 #pragma once

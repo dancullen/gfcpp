@@ -2,7 +2,6 @@
  * errors.hpp contains functions for manipulating errors. It is similar to Golang's `errors` package.
  *
  * TODO Implement Unwrap function. https://pkg.go.dev/errors#Unwrap
- * TODO Put everything into a namespace 'gfc'. (Golang-Flavored C++)
  */
 
 #pragma once
