@@ -1,7 +1,5 @@
 /**
  * errors.hpp contains functions for manipulating errors. It is similar to Golang's `errors` package.
- *
- * TODO Implement Unwrap function. https://pkg.go.dev/errors#Unwrap
  */
 
 #pragma once
