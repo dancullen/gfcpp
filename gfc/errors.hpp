@@ -56,13 +56,13 @@ private:
     std::string message_;
 };
 
-
 /**
  * nil is syntactic sugar for indicating a nil error, or in other words, a successful result.
  * It allows you to do comparisons such as `if (err != nil)`.
  */
 static const error nil(true, "");
 
+} // namespace gfc
 
 /**
  * CONTEXT wraps the given string with context info such as the current function's name.
@@ -73,7 +73,6 @@ static const error nil(true, "");
 #define CONTEXT(message) \
     (std::string(__func__) + std::string(": ") + std::string(message))
 
-
 /**
  * NewError returns a new error, annotated with context. Takes either a 'std::string' or 'const char *' for message.
  * Inspired by https://pkg.go.dev/errors#New
@@ -82,8 +81,7 @@ static const error nil(true, "");
  * https://stackoverflow.com/questions/733056/is-there-a-way-to-get-function-name-inside-a-c-function
  */
 #define NewError(message) \
-    error(false, CONTEXT(message))
-
+    gfc::error(false, CONTEXT(message))
 
 /**
  * Errorf is used to wrap an existing error with details before it gets returned up the call stack.
@@ -97,6 +95,4 @@ static const error nil(true, "");
  * https://stackoverflow.com/questions/733056/is-there-a-way-to-get-function-name-inside-a-c-function
  */
 #define Errorf(message, err) \
-    error(false, std::string(__func__) + std::string(": ") + std::string(message) + err.Error())
-
-} // namespace gfc
+    gfc::error(false, std::string(__func__) + std::string(": ") + std::string(message) + err.Error())
