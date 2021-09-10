@@ -4,4 +4,5 @@
 
 - Rather than using std::pair for multiple return values, we use our own Result class,
   because 'ret.err' and 'ret.value' is bit more readabile than 'ret.first' and 'ret.second'
-  (where 'ret' is the returned variable name).
+  (where 'ret' is the returned variable name). Also, a function signature that returns a
+  Result<SomeType> is much more intuitive than a function signature that returns a std::pair.
