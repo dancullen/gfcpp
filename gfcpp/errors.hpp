@@ -6,7 +6,7 @@
 
 #include <string>
 
-namespace gfc {
+namespace gfcpp {
 
 /**
  * error allows errors to be handled in C++ with Golang-like syntax and idioms. In other words,
@@ -62,7 +62,7 @@ private:
  */
 static const error nil(true, "");
 
-} // namespace gfc
+} // namespace gfcpp
 
 /**
  * CONTEXT wraps the given string with context info such as the current function's name.
@@ -81,7 +81,7 @@ static const error nil(true, "");
  * https://stackoverflow.com/questions/733056/is-there-a-way-to-get-function-name-inside-a-c-function
  */
 #define NewError(message) \
-    gfc::error(false, CONTEXT(message))
+    gfcpp::error(false, CONTEXT(message))
 
 /**
  * Errorf is used to wrap an existing error with details before it gets returned up the call stack.
@@ -95,4 +95,4 @@ static const error nil(true, "");
  * https://stackoverflow.com/questions/733056/is-there-a-way-to-get-function-name-inside-a-c-function
  */
 #define Errorf(message, err) \
-    gfc::error(false, std::string(__func__) + std::string(": ") + std::string(message) + err.Error())
+    gfcpp::error(false, std::string(__func__) + std::string(": ") + std::string(message) + err.Error())

@@ -10,7 +10,7 @@
 
 #include <string>
 
-namespace gfc {
+namespace gfcpp {
 
 /**
  * Result allows a function to return a data value and/or an error message.
@@ -60,4 +60,4 @@ inline Result<T> Failure(const std::string &message)
     return Result<T>(T(), error(false, message));
 }
 
-} // namespace gfc
+} // namespace gfcpp

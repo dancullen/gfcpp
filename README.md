@@ -1,4 +1,4 @@
-# Golang-Flavored C++ (GFC)
+# Golang-Flavored C++ (GFCPP)
 
 This C++ library helps you to write your C++ code in Go style by providing:
 
