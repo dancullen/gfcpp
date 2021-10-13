@@ -1,7 +1,9 @@
 /**
  * result.hpp contains code for returning results from a function. C++ does not support
  * multiple return values, unlike Golang, nor does it have syntactic sugar for returning
- * tuples as in Python.
+ * tuples as in Python. This code strives to be more readable and idiomatic than using std::pair.
+ * It also is more flexible than std::optional because you can return an error message,
+ * not just an empty result.
  */
 
 #pragma once
@@ -14,7 +16,9 @@ namespace gfcpp {
 
 /**
  * Result allows a function to return a data value and/or an error message.
- * This is essentially our own simple implementation of a Maybe/Either/Optional class.
+ *
+ * Other libraries and languages may refer to this sort of class by various names:
+ * Maybe, Either, Optional, Sometimes, Expected, Result, etc.
  *
  * If the 'err' member is nil, the user should assume that the 'value' member is undefined.
  * Technically it will have been initialized with its default constructor, but semantics
@@ -61,3 +65,11 @@ inline Result<T> Failure(const std::string &message)
 }
 
 } // namespace gfcpp
+
+/**
+ * NewFailure returns a new Failure annotated with context.
+ * It's basically a bit of syntactic sugar around invoking
+ * Failure constructor with the CONTEXT macro.
+ */
+#define NewFailure(T, message) \
+  gfcpp::Failure<T>(CONTEXT(message))
