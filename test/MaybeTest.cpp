@@ -15,7 +15,7 @@ static Maybe<int> doSomething(const bool shouldFail)
 
 std::string doSomethingElse(void)
 {
-    Maybe<int> result = doSomething(false);
+    auto result = doSomething(false);
     if (result.err != "")
     {
         return "Error: something faled. Details: " + result.err;
@@ -25,7 +25,7 @@ std::string doSomethingElse(void)
 
 TEST_CASE("Test the Maybe class", "[experiment]")
 {
-    Maybe<int> data = doSomething(true);
+    auto data = doSomething(true);
     CHECK(data.err != "");
 
     data = doSomething(false);
