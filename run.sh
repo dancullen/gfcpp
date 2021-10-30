@@ -10,13 +10,13 @@ FAILURE=1
 DEPDIR=$SCRIPTDIR/deps
 BUILDDIR=$SCRIPTDIR/build
 
-do_help()
+do-help()
 {
     echo
     echo "Usage: ./run.sh COMMAND [ARG...]"
     echo
-    echo "Every do_COMMAND function in this script implements a COMMAND."
-    echo "Functions are prefixed with 'do_' to prevent conflict with Bash"
+    echo "Every do-COMMAND function in this script implements a COMMAND."
+    echo "Functions are prefixed with 'do-' to prevent conflict with Bash"
     echo "keywords ('test', 'help', etc.) or other programs (e.g., 'cmake')."
     echo
     echo "Tip: Add this directory to your PATH or define 'alias run=./run.sh'"
@@ -41,24 +41,24 @@ do_help()
     echo
 }
 
-do_all()
+do-all()
 {
-    do_help
+    do-help
 }
 
-do_clean()
+do-clean()
 {
     echo "$SCRIPTNAME: clean: Deleting build directory."
     rm -fr "$BUILDDIR"
 }
 
-do_distclean()
+do-distclean()
 {
     echo "$SCRIPTNAME: distclean: Deleting all generated files from Git tree, including both the build and deps directories."
     git clean -d -f -x
 }
 
-do_deps()
+do-deps()
 {
     echo "$SCRIPTNAME: Downloading and install dependencies."
 
@@ -77,21 +77,21 @@ do_deps()
     fi
 }
 
-do_cmake()
+do-cmake()
 {
     echo "$SCRIPTNAME: Generating CMake files for amd64."
     mkdir -p "$BUILDDIR"
     cmake -B "$BUILDDIR" -DCMAKE_TOOLCHAIN_FILE=cmake/Toolchain-amd64.cmake -DCMAKE_BUILD_TYPE=Debug -GNinja .
 }
 
-do_build()
+do-build()
 {
     echo "$SCRIPTNAME: Building unit tests for amd64."
     # Pipe to cat so that each line of Ninja output will persist in to terminal rather than overwritten (Ninja tries to be too cute with ncurses stuff).
     cmake --build "$BUILDDIR" -- -j8 | cat
 }
 
-do_tests()
+do-tests()
 {
     echo "$SCRIPTNAME: Running unit tests on amd64."
     (
@@ -108,5 +108,5 @@ cmd=$1
 shift
 
 echo "$SCRIPTNAME: Running: $cmd $@"
-do_$cmd "$@"
+do-$cmd "$@"
 exit $?

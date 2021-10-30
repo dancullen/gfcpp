@@ -16,7 +16,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror")
 
 add_executable(tests
   test/main.cpp
-  test/MaybeTest.cpp
+  test/ResultTest.cpp
 )
 
 print_build_config()
