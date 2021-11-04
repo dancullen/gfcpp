@@ -14,11 +14,11 @@ namespace gfcpp {
 template<typename T>
 struct Result
 {
-    Result(void) : value(0), err("") { }
-    Result(const T &v) : value(v), err("") { }
-    Result(const std::string &e) : value(0), err(e) { }
-    bool isErr(void) const { return err != ""; }
-    bool isOk(void) const { return err == ""; }
+    Result(void) : value(), err() { }
+    Result(const T &v) : value(v), err() { }
+    Result(const std::string &e) : value(), err(e) { }
+    bool isErr(void) const { return err.size() != 0; }
+    bool isOk(void) const { return err.size() == 0; }
     T value;
     std::string err;
 };
