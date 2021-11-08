@@ -15,9 +15,12 @@ struct Result
 {
     Result(void) : value(), err() { }
     Result(const T &v) : value(v), err() { }
-    Result(const std::string &e) : value(), err(e) { }
+    static Result<T> Err(const std::string &e) { Result<T> r; r.err = e; return r; }
+    static Result<T> Ok(const T &v) { return Result<T>(v); }
+
     bool isErr(void) const { return err.size() != 0; }
     bool isOk(void) const { return err.size() == 0; }
+
     T value;
     std::string err;
 };

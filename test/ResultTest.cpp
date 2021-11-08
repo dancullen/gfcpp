@@ -13,7 +13,7 @@ static Result<int> shouldSucceed(void)
 
 static Result<int> shouldFail(void)
 {
-    return Result<int>("some failure occurred");
+    return Result<int>::Err("some failure occurred");
 }
 
 static std::string alsoShouldSucceed(void)
@@ -58,16 +58,21 @@ TEST_CASE("Complex datatype", "[gfcpp]")
     CHECK("dan" == good.value.name);
     CHECK(10 == good.value.age);
 
-    Result<Data> bad = std::string("failure");
+    auto bad = Result<Data>::Err("failure");
     CHECK("failure" == bad.err);
 }
 
-// Disable this test because you can't use Result class with a std::string data member;
-// compiler complains that you have two overloads with parameters of same data type.
-// TEST_CASE("Using a string as the data member")
-// {
-//     Result<std::string> r;
-//     r = std::string("hello");
-//     CHECK("hello" == r.err);
-//     CHECK("" == r.value);
-// }
+TEST_CASE("Using a string as the data member")
+{
+    auto good = Result<std::string>("good");
+    CHECK("" == good.err);
+    CHECK("good" == good.value);
+
+    auto ok = Result<std::string>::Ok("ok");
+    CHECK("" == ok.err);
+    CHECK("ok" == ok.value);
+
+    auto bad = Result<std::string>::Err("bad");
+    CHECK("bad" == bad.err);
+    CHECK("" == bad.value);
+}
