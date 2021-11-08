@@ -26,7 +26,7 @@ static std::string alsoShouldSucceed(void)
     return "";
 }
 
-TEST_CASE("Test the Maybe class", "[experiment]")
+TEST_CASE("Basic tests", "[gfcpp]")
 {
     auto data = shouldSucceed();
     CHECK("" == data.err);
@@ -40,4 +40,23 @@ TEST_CASE("Test the Maybe class", "[experiment]")
     CHECK(!data.isOk());
 
     CHECK("" == alsoShouldSucceed());
+}
+
+/**
+ * Data allows us to test our Result class with a more complex data type
+ * than simple primitives like ints and bools and floats.
+ */ 
+struct Data
+{
+    std::string name = "dan";
+    int age = 10;
+};
+
+TEST_CASE("Complex datatype", "[gfcpp]")
+{
+    Result<Data> d("failure");
+    CHECK("failure" == d.err);
+    d = Data();
+    CHECK("dan" == d.value.name);
+    CHECK(10 == d.value.age);
 }
