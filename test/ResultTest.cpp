@@ -60,3 +60,13 @@ TEST_CASE("Complex datatype", "[gfcpp]")
     CHECK("dan" == d.value.name);
     CHECK(10 == d.value.age);
 }
+
+// Disable this test because you can't use Result class with a std::string data member;
+// compiler complains that you have two overloads with parameters of same data type.
+// TEST_CASE("Using a string as the data member")
+// {
+//     Result<std::string> r;
+//     r = std::string("hello");
+//     CHECK("hello" == r.err);
+//     CHECK("" == r.value);
+// }
