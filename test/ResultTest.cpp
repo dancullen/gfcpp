@@ -54,11 +54,12 @@ struct Data
 
 TEST_CASE("Complex datatype", "[gfcpp]")
 {
-    Result<Data> d("failure");
-    CHECK("failure" == d.err);
-    d = Data();
-    CHECK("dan" == d.value.name);
-    CHECK(10 == d.value.age);
+    Result<Data> good;
+    CHECK("dan" == good.value.name);
+    CHECK(10 == good.value.age);
+
+    Result<Data> bad = std::string("failure");
+    CHECK("failure" == bad.err);
 }
 
 // Disable this test because you can't use Result class with a std::string data member;
