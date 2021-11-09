@@ -8,6 +8,8 @@ namespace gfcpp {
  * @brief Result allows functions to return either a value
  * or an error message explaining the failure.
  *
+ * The value T can be any type that has a default constructor and a copy constructor.
+ *
  * Inspired by [Rust's std::result::Result](https://doc.rust-lang.org/std/result/enum.Result.html).
  */
 template<typename T>
