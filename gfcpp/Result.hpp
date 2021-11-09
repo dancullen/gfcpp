@@ -13,9 +13,8 @@ namespace gfcpp {
 template<typename T>
 struct Result
 {
-    Result(void) : value(), err() { }
-    Result(const T &v) : value(v), err() { }
-    static Result<T> Err(const std::string &e) { Result<T> r; r.err = e; return r; }
+    Result(const T &v=T(), const std::string &e=std::string()) : value(v), err(e) { }
+    static Result<T> Err(const std::string &e) { return Result<T>(T(), e); }
     static Result<T> Ok(const T &v) { return Result<T>(v); }
 
     bool isErr(void) const { return err.size() != 0; }
